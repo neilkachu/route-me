@@ -53,8 +53,6 @@
 		2599740912EB966400816331 /* RMSpatialCloudMapSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 2599740712EB966400816331 /* RMSpatialCloudMapSource.h */; };
 		2599740B12EB967600816331 /* RMSpatialCloudMapSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2599740812EB966400816331 /* RMSpatialCloudMapSource.m */; };
 		2702E97012EB9DB50027A466 /* RMSpatialCloudMapSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2599740812EB966400816331 /* RMSpatialCloudMapSource.m */; };
-		28E526931405168100CC6C6F /* RMOpenStreetMapOSMapSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 28E526911405168100CC6C6F /* RMOpenStreetMapOSMapSource.h */; };
-		28E526941405168100CC6C6F /* RMOpenStreetMapOSMapSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E526921405168100CC6C6F /* RMOpenStreetMapOSMapSource.m */; };
 		2B2BADD70FA3B45A00EE37AA /* marker-X.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B2BADD60FA3B45A00EE37AA /* marker-X.png */; };
 		2B5682720F68E36000E8DF40 /* RMOpenAerialMapSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B5682700F68E36000E8DF40 /* RMOpenAerialMapSource.h */; };
 		2B5682730F68E36000E8DF40 /* RMOpenAerialMapSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B5682710F68E36000E8DF40 /* RMOpenAerialMapSource.m */; };
@@ -267,8 +265,6 @@
 		2599740712EB966400816331 /* RMSpatialCloudMapSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMSpatialCloudMapSource.h; sourceTree = "<group>"; };
 		2599740812EB966400816331 /* RMSpatialCloudMapSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMSpatialCloudMapSource.m; sourceTree = "<group>"; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		28E526911405168100CC6C6F /* RMOpenStreetMapOSMapSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMOpenStreetMapOSMapSource.h; sourceTree = "<group>"; };
-		28E526921405168100CC6C6F /* RMOpenStreetMapOSMapSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMOpenStreetMapOSMapSource.m; sourceTree = "<group>"; };
 		2B2BADD60FA3B45A00EE37AA /* marker-X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "marker-X.png"; path = "../marker-X.png"; sourceTree = "<group>"; };
 		2B2BD41D0F79A95500B8B9A7 /* README-static-library-build.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "README-static-library-build.rtf"; sourceTree = "<group>"; };
 		2B2BD41E0F79A95500B8B9A7 /* routeme.doxygen */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = routeme.doxygen; sourceTree = "<group>"; };
@@ -688,8 +684,6 @@
 				C7A967510E8412930031BA75 /* RMAbstractMercatorWebSource.m */,
 				B83E64ED0E80E73F001663B6 /* RMOpenStreetMapSource.h */,
 				B83E64EE0E80E73F001663B6 /* RMOpenStreetMapSource.m */,
-				28E526911405168100CC6C6F /* RMOpenStreetMapOSMapSource.h */,
-				28E526921405168100CC6C6F /* RMOpenStreetMapOSMapSource.m */,
 				C7A9675C0E84134B0031BA75 /* RMVirtualEarthSource.h */,
 				C7A9675D0E84134B0031BA75 /* RMVirtualEarthSource.m */,
 				D1437B32122869E400888DAE /* RMDBMapSource.m */,
@@ -897,7 +891,6 @@
 				17F02BB11319BA4B00260C6B /* RouteMe.h in Headers */,
 				175701DE1323C2E900A5D314 /* NSUserDefaults+RouteMe.h in Headers */,
 				DDA3E85613B00D9E004D861C /* RMMapQuestOSMSource.h in Headers */,
-				28E526931405168100CC6C6F /* RMOpenStreetMapOSMapSource.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1200,7 +1193,6 @@
 				4474211C1302B60A004D6E8A /* RMWMS.m in Sources */,
 				175701DF1323C2E900A5D314 /* NSUserDefaults+RouteMe.m in Sources */,
 				DDA3E85713B00D9E004D861C /* RMMapQuestOSMSource.m in Sources */,
-				28E526941405168100CC6C6F /* RMOpenStreetMapOSMapSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
