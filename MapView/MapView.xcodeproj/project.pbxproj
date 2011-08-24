@@ -1156,10 +1156,8 @@
 				B8C9743A0E8A19B2007D16AD /* RMCoreAnimationRenderer.m in Sources */,
 				B8C9743F0E8A19B2007D16AD /* RMTileImage.m in Sources */,
 				B8C974400E8A19B2007D16AD /* RMTile.c in Sources */,
-				B8C974410E8A19B2007D16AD /* RMOpenStreetMapSource.m in Sources */,
 				B8C974420E8A19B2007D16AD /* RMMemoryCache.m in Sources */,
 				B8C974430E8A19B2007D16AD /* RMPixel.c in Sources */,
-				B8C974440E8A19B2007D16AD /* RMFractalTileProjection.m in Sources */,
 				B8C974460E8A19B2007D16AD /* RMFileTileImage.m in Sources */,
 				B8C974480E8A19B2007D16AD /* RMTileCache.m in Sources */,
 				B8C9744A0E8A19B2007D16AD /* RMProjection.m in Sources */,
@@ -1190,6 +1188,7 @@
 				96FE8E370F72D01B00A11CF0 /* RMYahooMapSource.m in Sources */,
 				F5C12D2B0F8A86CA00A894D2 /* RMGeoHash.m in Sources */,
 				B144DEFF0FD989C3003F3368 /* RMTileMapServiceSource.m in Sources */,
+				B8C974410E8A19B2007D16AD /* RMOpenStreetMapSource.m in Sources */,
 				B1EB26C410B5D8C0009F8658 /* RMOpenCycleMapSource.m in Sources */,
 				D1437B34122869E400888DAE /* RMDBTileImage.m in Sources */,
 				D1437B36122869E400888DAE /* RMDBMapSource.m in Sources */,
@@ -1200,6 +1199,7 @@
 				4474211C1302B60A004D6E8A /* RMWMS.m in Sources */,
 				175701DF1323C2E900A5D314 /* NSUserDefaults+RouteMe.m in Sources */,
 				DDA3E85713B00D9E004D861C /* RMMapQuestOSMSource.m in Sources */,
+				B8C974440E8A19B2007D16AD /* RMFractalTileProjection.m in Sources */,
 				28E526941405168100CC6C6F /* RMOpenStreetMapOSMapSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1409,7 +1409,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MapView_Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=0";
 				HEADER_SEARCH_PATHS = ../Proj4;
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
