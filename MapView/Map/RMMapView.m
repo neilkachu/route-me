@@ -621,7 +621,7 @@
 	}
 	
 	CALayer* hit = [self.contents.overlay hitTest:[touch locationInView:self]];
-//	RMLog(@"LAYER of type %@",[hit description]);
+	RMLog(@"LAYER of type %@",[hit description]);
 	
 	if (hit != nil) {
    
@@ -629,6 +629,7 @@
    
          if (!_delegateHasShouldDragMarker || (_delegateHasShouldDragMarker && [delegate mapView:self shouldDragMarker:(RMMarker*)hit withEvent:event])) {
             if (_delegateHasDidDragMarker) {
+				RMLog(@"Sending drag Marker");
                [delegate mapView:self didDragMarker:(RMMarker*)hit withEvent:event];
                return;
             }

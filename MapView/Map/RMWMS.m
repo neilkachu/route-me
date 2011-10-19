@@ -29,7 +29,7 @@
 
 @implementation RMWMS
 
-@synthesize urlPrefix;
+@dynamic  urlPrefix;
 @synthesize layers;
 @synthesize styles;
 @synthesize queryLayers;

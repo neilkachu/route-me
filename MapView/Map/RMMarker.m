@@ -39,7 +39,8 @@
 @synthesize textForegroundColor;
 @synthesize textBackgroundColor;
 
-#define defaultMarkerAnchorPoint CGPointMake(0.5, 0.5)
+// MarkerAnchorPoint
+#define defaultMarkerAnchorPoint CGPointMake(0.3, 0.9)
 
 + (UIFont *)defaultFont
 {
