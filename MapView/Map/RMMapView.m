@@ -54,6 +54,7 @@
 @synthesize enableDragging;
 @synthesize enableZoom;
 @synthesize enableRotate;
+@synthesize markerStartedDrag;
 
 #pragma mark --- begin constants ----
 #define kDefaultDecelerationFactor .88f
@@ -480,6 +481,24 @@
 			return;
 		}
 	}
+    
+    // NE: support for fast marker drag nto dropping marker
+    CALayer* hit = [self.contents.overlay hitTest:[touch locationInView:self]];
+    RMLog(@" touchesBegan LAYER of type %@",[hit description]);
+    
+    if (hit != nil) {
+        
+        if ([hit isKindOfClass: [RMMarker class]]) {
+            
+            [delegate mapView:self shouldDragMarker:(RMMarker*)hit withEvent:event];
+            
+            markerStartedDrag=YES;
+        }else{
+            markerStartedDrag=NO;
+        }
+	}
+    //
+    
 		
 	if (lastGesture.numTouches == 0)
 	{
@@ -531,6 +550,20 @@
 			return;
 		}
 	}
+    
+    
+    CALayer* hit = [self.contents.overlay hitTest:[touch locationInView:self]];
+    RMLog(@" touchesEnded LAYER of type %@",[hit description]);
+    
+    if (hit != nil) {
+        
+        if ([hit isKindOfClass: [RMMarker class]]) {
+            
+            
+        }
+	}
+    
+    
 	NSInteger lastTouches = lastGesture.numTouches;
 	
 	// Calculate the gesture.
@@ -612,6 +645,7 @@
 	
 	//Check if the touch hit a RMMarker subclass and if so, forward the touch event on
 	//so it can be handled there
+    /*
 	id furthestLayerDown = [self.contents.overlay hitTest:[touch locationInView:self]];
 	if ([[furthestLayerDown class]isSubclassOfClass: [RMMarker class]]) {
 		if ([furthestLayerDown respondsToSelector:@selector(touchesMoved:withEvent:)]) {
@@ -619,22 +653,45 @@
 			return;
 		}
 	}
+     */
 	
 	CALayer* hit = [self.contents.overlay hitTest:[touch locationInView:self]];
-	RMLog(@"LAYER of type %@",[hit description]);
+	RMLog(@"touchesMoved LAYER of type %@",[hit description]);
 	
 	if (hit != nil) {
-   
-      if ([hit isKindOfClass: [RMMarker class]]) {
-   
-         if (!_delegateHasShouldDragMarker || (_delegateHasShouldDragMarker && [delegate mapView:self shouldDragMarker:(RMMarker*)hit withEvent:event])) {
-            if (_delegateHasDidDragMarker) {
-				RMLog(@"Sending drag Marker");
-               [delegate mapView:self didDragMarker:(RMMarker*)hit withEvent:event];
-               return;
+        
+        BOOL shouldReportDrag=[hit isKindOfClass: [RMMarker class]];
+        
+        if([hit isKindOfClass: [RMLayerCollection class]]){
+            if(markerStartedDrag==YES){
+                shouldReportDrag=YES;
+            }else{
+                shouldReportDrag=NO;
             }
-         }
+        }
+   
+      if (shouldReportDrag==YES) {
+          
+          if (_delegateHasDidDragMarker) {
+              RMLog(@"Sending drag Marker");
+              [delegate mapView:self didDragMarker:(RMMarker*)hit withEvent:event];
+              return;
+          }
+          
+      }else{
+      
+      
+          if (!_delegateHasShouldDragMarker || (_delegateHasShouldDragMarker && [delegate mapView:self shouldDragMarker:(RMMarker*)hit withEvent:event])) {
+              if (_delegateHasDidDragMarker) {
+                  RMLog(@"Sending drag Marker");
+                  [delegate mapView:self didDragMarker:(RMMarker*)hit withEvent:event];
+                  return;
+              }
+          }
+      
       }
+        
+         
 	}
 	
 	RMGestureDetails newGesture = [self gestureDetails:[event allTouches]];

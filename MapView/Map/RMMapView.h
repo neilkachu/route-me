@@ -161,6 +161,7 @@ typedef struct {
 @property (readwrite) BOOL enableDragging;
 @property (readwrite) BOOL enableZoom;
 @property (readwrite) BOOL enableRotate;
+@property (readwrite) BOOL markerStartedDrag;
 
 @property (nonatomic, retain, readonly) RMMarkerManager *markerManager;
 
