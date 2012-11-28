@@ -51,4 +51,7 @@ extern NSString * const RMCloudMadeAccessTokenRequestFailed;
 - (id) initWithAccessKey:(NSString *)developerAccessKey
 			 styleNumber:(NSUInteger)styleNumber;
 
++(NSString*)createAppUUID;
++ (NSString*) stringWithUUID;
+
 @end

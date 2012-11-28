@@ -44,7 +44,7 @@
 
 + (UIFont *)defaultFont
 {
-	return [UIFont systemFontOfSize:15];
+	return [UIFont boldSystemFontOfSize:12];
 }
 
 // init
@@ -52,7 +52,7 @@
 {
     if (self = [super init]) {
         label = nil;
-        textForegroundColor = [UIColor blackColor];
+        textForegroundColor = [UIColor whiteColor];
         textBackgroundColor = [UIColor clearColor];
 		enableDragging = YES;
 		enableRotation = YES;
@@ -117,7 +117,7 @@
 
 - (void) changeLabelUsingText: (NSString*)text
 {
-	CGPoint position = CGPointMake([self bounds].size.width / 2 - [text sizeWithFont:[RMMarker defaultFont]].width / 2, 4);
+	CGPoint position = CGPointMake(2, 6);
 /// \bug hardcoded font name
 	[self changeLabelUsingText:text position:position font:[RMMarker defaultFont] foregroundColor:[self textForegroundColor] backgroundColor:[self textBackgroundColor]];
 }
@@ -129,7 +129,8 @@
 
 - (void) changeLabelUsingText: (NSString*)text font:(UIFont*)font foregroundColor:(UIColor*)textColor backgroundColor:(UIColor*)backgroundColor
 {
-	CGPoint position = CGPointMake([self bounds].size.width / 2 - [text sizeWithFont:font].width / 2, 4);
+    //CGPoint position = CGPointMake([self bounds].size.width / 2 - [text sizeWithFont:[RMMarker defaultFont]].width / 2, 4);
+	CGPoint position = CGPointMake(0, 4);
 	[self setTextForegroundColor:textColor];
 	[self setTextBackgroundColor:backgroundColor];
 	[self changeLabelUsingText:text  position:position font:font foregroundColor:textColor backgroundColor:backgroundColor];
@@ -140,10 +141,11 @@
 	CGSize textSize = [text sizeWithFont:font];
 	CGRect frame = CGRectMake(position.x,
 							  position.y,
-							  textSize.width+4,
+							  textSize.width+10,
 							  textSize.height+4);
 	
 	UILabel *aLabel = [[UILabel alloc] initWithFrame:frame];
+    aLabel.userInteractionEnabled=YES;
 	[self setTextForegroundColor:textColor];
 	[self setTextBackgroundColor:backgroundColor];
 	[aLabel setNumberOfLines:0];

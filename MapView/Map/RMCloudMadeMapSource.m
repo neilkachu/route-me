@@ -28,6 +28,7 @@
 
 #import "RMCloudMadeMapSource.h"
 
+
 @implementation RMCloudMadeMapSource
 
 #define kDefaultCloudMadeStyleNumber 7
@@ -67,6 +68,35 @@ NSString * const RMCloudMadeAccessTokenRequestFailed = @"RMCloudMadeAccessTokenR
 	return FALSE;
 }
 
+
++(NSString*)createAppUUID{
+	
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	NSString *uuid=[defaults objectForKey:@"UUID"];
+	
+    if (uuid == nil) {
+		uuid=[RMCloudMadeMapSource stringWithUUID];
+        [defaults setObject:uuid forKey:@"UUID"];
+        [defaults synchronize];
+		
+    }
+	
+	return uuid;
+	
+}
+
+
++ (NSString*) stringWithUUID {
+	CFUUIDRef	uuidObj = CFUUIDCreate(nil);//create a new UUID
+	NSString	*str=nil;
+	
+	if(uuidObj){
+		str = (NSString*)CFUUIDCreateString(nil, uuidObj);
+		CFRelease(uuidObj);
+	}
+	return str;
+}
+
 -(void) requestToken
 {
 	
@@ -74,7 +104,7 @@ NSString * const RMCloudMadeAccessTokenRequestFailed = @"RMCloudMadeAccessTokenR
 			return;
 	
 	NSString* url = [NSString stringWithFormat:@"%@/token/%@?userid=%u",CMTokenAuthorizationServer,accessKey,
-					[[UIDevice currentDevice].uniqueIdentifier hash]];
+					[[RMCloudMadeMapSource createAppUUID] hash]];
 
 	
 	NSData* data = nil;

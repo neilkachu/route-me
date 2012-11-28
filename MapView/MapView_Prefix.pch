@@ -15,8 +15,8 @@
 #else  
 // DEBUG not defined:
 
-//#define RMLog(args...)    // do nothing.
-#define RMLog(args...)    NSLog(@"%@", [NSString stringWithFormat: args])
+#define RMLog(args...)    // do nothing.
+//#define RMLog(args...)    NSLog(@"%@", [NSString stringWithFormat: args])
 #define LogMethod() 
 #define WarnDeprecated() 
 #define NS_BLOCK_ASSERTIONS 1

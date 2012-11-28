@@ -28,6 +28,7 @@
 #import "RMMapView.h"
 #import "RMMapContents.h"
 #import "RMMapViewDelegate.h"
+#import "RMLayerCollection.h"
 
 #import "RMTileLoader.h"
 
@@ -486,17 +487,19 @@
     CALayer* hit = [self.contents.overlay hitTest:[touch locationInView:self]];
     RMLog(@" touchesBegan LAYER of type %@",[hit description]);
     
-    if (hit != nil) {
-        
-        if ([hit isKindOfClass: [RMMarker class]]) {
+    if(_delegateHasShouldDragMarker){
+        if (hit != nil) {
             
-            [delegate mapView:self shouldDragMarker:(RMMarker*)hit withEvent:event];
-            
-            markerStartedDrag=YES;
-        }else{
-            markerStartedDrag=NO;
+            if ([hit isKindOfClass: [RMMarker class]]) {
+                
+                [delegate mapView:self shouldDragMarker:(RMMarker*)hit withEvent:event];
+                
+                markerStartedDrag=YES;
+            }else{
+                markerStartedDrag=NO;
+            }
         }
-	}
+    }
     //
     
 		
