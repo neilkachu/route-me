@@ -108,6 +108,8 @@
 			  backgroundImage:nil];
 }
 
+
+
 - (id)initWithView:(UIView*)newView
 		tilesource:(id<RMTileSource>)newTilesource
 	  centerLatLon:(CLLocationCoordinate2D)initialCenter
@@ -161,9 +163,9 @@
 	[tileLoader setSuppressLoading:NO];
 	
 	/// \bug TODO: Make a nice background class
-	RMMapLayer *theBackground = [[RMMapLayer alloc] init];
-	[self setBackground:theBackground];
-	[theBackground release];
+	//RMMapLayer *theBackground = [[RMMapLayer alloc] init];
+	//[self setBackground:theBackground];
+	//[theBackground release];
 	
 	RMLayerCollection *theOverlay = [[RMLayerCollection alloc] initForContents:self];
 	[self setOverlay:theOverlay];
@@ -182,6 +184,98 @@
 	return self;
 }
 
+
+- (id)initWithNoMapView: (UIView*) view
+		tilesource:(id<RMTileSource>)newTilesource
+{
+	LogMethod();
+	CLLocationCoordinate2D here;
+	here.latitude = kDefaultInitialLatitude;
+	here.longitude = kDefaultInitialLongitude;
+	
+	return [self initWithNoMapView:view
+				   tilesource:newTilesource
+				 centerLatLon:here
+					zoomLevel:kDefaultInitialZoomLevel
+				 maxZoomLevel:kDefaultMaximumZoomLevel
+				 minZoomLevel:kDefaultMinimumZoomLevel
+			  backgroundImage:nil];
+}
+
+- (id)initWithNoMapView:(UIView*)newView
+		tilesource:(id<RMTileSource>)newTilesource
+	  centerLatLon:(CLLocationCoordinate2D)initialCenter
+		 zoomLevel:(float)initialZoomLevel
+	  maxZoomLevel:(float)maxZoomLevel
+	  minZoomLevel:(float)minZoomLevel
+   backgroundImage:(UIImage *)backgroundImage
+
+{
+	LogMethod();
+	if (![super init])
+		return nil;
+    
+    
+	tileSource = nil;
+	projection = nil;
+	mercatorToTileProjection = nil;
+	renderer = nil;
+	imagesOnScreen = nil;
+	tileLoader = nil;
+    
+    screenScale = 1.0;
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)])
+    {
+        screenScale = [[[UIScreen mainScreen] valueForKey:@"scale"] floatValue];
+    }
+    
+	boundingMask = RMMapMinWidthBound;
+    
+    newView.backgroundColor=[UIColor redColor];
+    
+	//mercatorToScreenProjection = [[RMMercatorToScreenProjection alloc] initFromProjection:[newTilesource projection] ToScreenBounds:[newView bounds]];
+	
+	layer = [[newView layer] retain];
+//    
+//    [self setMinZoom:minZoomLevel];
+//    [self setMaxZoom:maxZoomLevel];
+//    
+//	[self setTileSource:newTilesource];
+//	[self setRenderer: [[[RMCoreAnimationRenderer alloc] initWithContent:self] autorelease]];
+//	
+//	imagesOnScreen = [[RMTileImageSet alloc] initWithDelegate:renderer];
+//	[imagesOnScreen setTileSource:tileSource];
+//    
+//	tileLoader = [[RMTileLoader alloc] initWithContent:self];
+//	[tileLoader setSuppressLoading:YES];
+//    
+//	[self setZoom:initialZoomLevel];
+//    
+//	[self moveToLatLong:initialCenter];
+	
+	//[tileLoader setSuppressLoading:NO];
+	
+//	/// \bug TODO: Make a nice background class
+//	RMMapLayer *theBackground = [[RMMapLayer alloc] init];
+//	[self setBackground:theBackground];
+//	[theBackground release];
+	
+	RMLayerCollection *theOverlay = [[RMLayerCollection alloc] initForContents:self];
+	[self setOverlay:theOverlay];
+	[theOverlay release];
+	
+	markerManager = [[RMMarkerManager alloc] initWithContents:self];
+	
+	[newView setNeedsDisplay];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(handleMemoryWarningNotification:)
+												 name:UIApplicationDidReceiveMemoryWarningNotification
+											   object:nil];
+    
+	
+	RMLog(@"Map contents initialised. view: %@ tileSource %@ renderer %@", newView, tileSource, renderer);
+	return self;
+}
 
 /// deprecated at any moment after release 0.5	
 - (id) initForView: (UIView*) view

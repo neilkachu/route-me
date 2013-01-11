@@ -172,6 +172,16 @@ enum {
 	  minZoomLevel:(float)minZoomLevel
    backgroundImage:(UIImage *)backgroundImage;
 
+- (id)initWithNoMapView: (UIView*) view
+             tilesource:(id<RMTileSource>)newTilesource;
+- (id)initWithNoMapView:(UIView*)newView
+             tilesource:(id<RMTileSource>)newTilesource
+           centerLatLon:(CLLocationCoordinate2D)initialCenter
+              zoomLevel:(float)initialZoomLevel
+           maxZoomLevel:(float)maxZoomLevel
+           minZoomLevel:(float)minZoomLevel
+        backgroundImage:(UIImage *)backgroundImage;
+
 /// \deprecated subject to removal at any moment after 0.5 is released
 - (id) initForView: (UIView*) view;
 /// \deprecated subject to removal at any moment after 0.5 is released

@@ -34,6 +34,15 @@
 
 @class RMMarkerStyle;
 
+
+enum  {
+	RMMarkerDataTypeWaypoint,
+	RMMarkerDataTypePOI
+};
+typedef int RMMarkerDataType;
+
+
+
 /// one marker drawn on the map. Note that RMMarker ultimately descends from CALayer, and has an image contents.
 /// RMMarker inherits "position" and "anchorPoint" from CALayer.
 @interface RMMarker : RMMapLayer <RMMovingMapLayer> {
@@ -46,6 +55,8 @@
 	UIView *label;
 	UIColor *textForegroundColor;
 	UIColor *textBackgroundColor;
+    
+    RMMarkerDataType        dataType;
 	
 	BOOL enableDragging;
 	BOOL enableRotation;
@@ -53,6 +64,8 @@
 @property (assign, nonatomic) RMProjectedPoint projectedLocation;
 @property (assign) BOOL enableDragging;
 @property (assign) BOOL enableRotation;
+
+@property (assign) RMMarkerDataType dataType;
 
 @property (nonatomic, retain) NSObject* data;
 @property (nonatomic, retain) UIView* label;

@@ -38,6 +38,7 @@
 @synthesize label;
 @synthesize textForegroundColor;
 @synthesize textBackgroundColor;
+@synthesize dataType;
 
 // MarkerAnchorPoint
 #define defaultMarkerAnchorPoint CGPointMake(0.3, 0.9)
